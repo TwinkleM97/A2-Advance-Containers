@@ -166,6 +166,7 @@ location /api/ {
 }
 ```
 - This configuration distributes incoming requests evenly across backend containers, enhancing both performance and fault tolerance.
+
 ### MySQL Setup
 
 Uses `init.sql` to create `users` table automatically on first run.
@@ -237,7 +238,7 @@ cloudflared tunnel --config "C:\Users\twink\.cloudflared\config.yml" run myapp
 ## Screenshots 
 
 - CLI: docker ps output
-![Docker PS](screenshots/docker-ps.png)
+![Docker PS](screenshots/docker%20ps%20.png)
 
 - Docker Desktop shows containers running
 ![Docker Desktop](screenshots/docker%20desktop.png)
