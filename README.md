@@ -9,7 +9,7 @@ This project demonstrates a scalable, secure, and containerized user management 
 - MySQL database for persistence
 - NGINX as a reverse proxy/load balancer
 - Docker Volumes and Networks
-- Cloudflare Tunnel for external access (Bonus)
+- Cloudflare Tunnel for external access
 
 ---
 
@@ -20,7 +20,7 @@ This project demonstrates a scalable, secure, and containerized user management 
 - **MySQL**: Relational database
 - **NGINX**: Load balancer
 - **Docker & Docker Compose**: Container orchestration
-- **Cloudflare Tunnel**: Secure external access (Bonus)
+- **Cloudflare Tunnel**: Secure external access
 
 ---
 
@@ -145,6 +145,27 @@ Routes requests:
 - `/api/*` → backend
 - `/` → frontend Load balances between backend replicas
 
+### Load Balancing with NGINX
+
+NGINX is configured as a load balancer to distribute API traffic across three backend containers: `backend`, `backend-2`, and `backend-3`.
+
+- The `nginx/default.conf` defines an `upstream` block:
+
+```nginx
+upstream backend_cluster {
+    server backend:3000;
+    server backend-2:3000;
+    server backend-3:3000;
+}
+```
+- Requests to /api/ are forwarded using:
+
+```nginx
+location /api/ {
+    proxy_pass http://backend_cluster;
+}
+```
+- This configuration distributes incoming requests evenly across backend containers, enhancing both performance and fault tolerance.
 ### MySQL Setup
 
 Uses `init.sql` to create `users` table automatically on first run.
@@ -215,27 +236,40 @@ cloudflared tunnel --config "C:\Users\twink\.cloudflared\config.yml" run myapp
 
 ## Screenshots 
 
-CLI: docker ps output
+- CLI: docker ps output
 ![Docker PS](screenshots/docker-ps.png)
-Docker Desktop shows containers running
+
+- Docker Desktop shows containers running
 ![Docker Desktop](screenshots/docker%20desktop.png)
-React Frontend working in browser
+
+- React Frontend working in browser
 ![Frontend Running](screenshots/browser%20up.png)
-Backend API container running
+
+- Backend API container running
 ![Backend Up](screenshots/backend%20up.png)
-phpMyAdmin shows user table
+
+- phpMyAdmin shows user table
 ![phpMyAdmin DB](screenshots/phpMyAdmin.png)
-API logs captured in backend
+
+- API logs captured in backend
 ![API Request Logs](screenshots/api-log.png)
-Namecheap Domain Configuration
+
+- Namecheap Domain Configuration
 ![Namecheap](screenshots/namecheap.png)
-Cloudflared login (browser auth)
+
+- Cloudflared login (browser auth)
 ![Cloudflared Login](screenshots/cloudflared%20login.png)
-List of tunnels created via Cloudflare
+
+- List of tunnels created via Cloudflare
 ![Tunnel List](screenshots/cloudflared%20tunnel%20list.png)
-Cloudflared tunnel run command 
+
+- Cloudflared tunnel run command 
 ![Tunnel Running](screenshots/tunnel%20run.png)
-Live application working via https://app.syscarehub.me
+
+- Cloudflare DNS Records Configuration
+![Cloudflare DNS](screenshots/cloudflare-dns.png)
+
+- Live application working via https://app.syscarehub.me
 ![Live App](screenshots/live-app-working.png)
 
 ---
