@@ -66,8 +66,8 @@ Make sure you have installed:
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/<your-repo>.git
-cd <your-repo>
+git clone https://github.com/TwinkleM97/A2-Advance-Containers.git
+cd A2-Advance-Containers
 ```
 
 ---
@@ -272,6 +272,20 @@ cloudflared tunnel --config "C:\Users\twink\.cloudflared\config.yml" run myapp
 
 - Live application working via https://app.syscarehub.me
 ![Live App](screenshots/live-app-working.png)
+
+### API Testing via curl
+
+- POST /api/users
+
+![curl-post](screenshots/user-created.png)
+
+- GET /api/users
+
+![curl-get](screenshots/get-all-users.png)
+
+- DELETE /api/users/9
+
+![curl-delete](screenshots/delete-user.png)
 
 ---
 
