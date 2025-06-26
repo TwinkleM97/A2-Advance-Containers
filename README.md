@@ -287,6 +287,20 @@ cloudflared tunnel --config "C:\Users\twink\.cloudflared\config.yml" run myapp
 
 ![curl-delete](screenshots/delete-user.png)
 
+### API Testing via curl
+
+- POST /api/users
+
+![curl-post](screenshots/user-created.png)
+
+- GET /api/users
+
+![curl-get](screenshots/get-all-users.png)
+
+- DELETE /api/users/9
+
+![curl-delete](screenshots/delete-user.png)
+
 ---
 
 ## Summary
